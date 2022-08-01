@@ -155,6 +155,14 @@ export class Cursor {
   }
 
   /**
+   * Returns subsequent byte, without advancing position
+   */
+  peek(): number {
+    // dataView throws RangeError if position is outside bounds
+    return this.dataView.getInt8(this.position);
+  }
+
+  /**
    * Reads a number at the current cursor position, using the given {@link type}
    * (big endian).
    * This advances the cursor by the size of the data `type`.
