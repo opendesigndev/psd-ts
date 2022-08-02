@@ -180,7 +180,11 @@ export class Lexer {
   private string(): string {
     const decoder = new TextDecoder("ascii");
     const readAhead = this.cursor.clone();
-    while (!this.done() && !WhitespaceCharacters.has(this.cursor.peek())) {
+    while (
+      !this.done() &&
+      !WhitespaceCharacters.has(this.cursor.peek()) &&
+      !DelimiterCharacters.has(this.cursor.peek())
+    ) {
       this.cursor.pass(1);
     }
     const text = decoder.decode(

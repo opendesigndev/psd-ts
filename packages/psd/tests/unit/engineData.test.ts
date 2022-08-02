@@ -8,7 +8,7 @@ import {describe, expect, it} from "vitest";
 
 import {parseEngineData} from "../../src/methods/parseEngineData";
 import {Lexer, TokenType} from "../../src/engineData";
-import {Cursor} from "../../src/utils";
+import {Cursor, MissingEngineDataProperties} from "../../src/utils";
 
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
 
@@ -21,6 +21,27 @@ describe("parseEngineData", () => {
       })
     );
     expect(parseEngineData(data)).toStrictEqual(expected);
+  });
+
+  it("should blame invalid file", () => {
+    const data = new Uint8Array([
+      0x3c, // <
+      0x3c, // <
+      0x2f, // /
+      0x61, // a
+      0x62, // b
+      0x63, // c
+      0x20, // ' '
+      0x2f, // /
+      0x61, // a
+      0x62, // b
+      0x63, // c
+      0x3e, // >
+      0x3e, // >
+    ]);
+    expect(() => parseEngineData(data)).toThrowError(
+      MissingEngineDataProperties
+    );
   });
 });
 

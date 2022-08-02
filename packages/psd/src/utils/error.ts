@@ -88,3 +88,4 @@ export class UnexpectedEndOfEngineData extends PsdError {}
 export class UnexpectedEngineDataToken extends PsdError {}
 export class InvalidEngineDataDictKey extends PsdError {}
 export class InvalidEngineDataTextBOM extends PsdError {}
+export class MissingEngineDataProperties extends PsdError {}
