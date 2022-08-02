@@ -26,7 +26,7 @@ export class Parser {
 
   parse(): RawEngineData {
     const value = this.value();
-    // TODO: for this to be true we'd need to force lexer somehow
+    // TODO: for this to be true we'd need to force lexer somehow into reaching end-of-file
     // console.assert(this.done, "not all tokens from engine data were consumed")
     if (typeof value === "object" && !Array.isArray(value)) {
       return value;
@@ -39,8 +39,9 @@ export class Parser {
   private value(it?: Token): RawEngineValue {
     /**
      * NOTE: this is recursive descent parser - simplest solution in terms of code complexity
-     * In case we ever start to run into stack-depth issues (stack overflow) due to
-     * parsing data that's too big, this can be re-written into stack-based one.
+     * In case we ever start to run into stack-depth issues
+     * ("RangeError: Maximum call stack size exceeded" )
+     * due to parsing data that's too big, this can be re-written into stack-based one.
      * That's because EngineData can be thought about as reverse-polish notation:
      * ] - end of array requires popping values from stack until you hit [
      *  (and pushing new value - an array - onto stack)
