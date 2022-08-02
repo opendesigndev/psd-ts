@@ -50,9 +50,6 @@ export class Parser {
     if (!it) {
       it = this.advance();
     }
-    if (!it) {
-      throw new UnexpectedEndOfEngineData("End of stream");
-    }
     switch (it.type) {
       case TokenType.Name:
       case TokenType.Number:
@@ -72,6 +69,9 @@ export class Parser {
   private advance(): Token {
     const it = this.tokens.next();
     // this.done = Boolean(it.done);
+    if (!it.value) {
+      throw new UnexpectedEndOfEngineData("End of stream");
+    }
     return it.value;
   }
 
