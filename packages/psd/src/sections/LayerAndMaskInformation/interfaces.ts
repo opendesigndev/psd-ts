@@ -59,7 +59,7 @@ export interface LayerProperties {
   /** Text content of text layers */
   text?: string;
   /** Text properties */
-  textProperties?: EngineData
+  textProperties?: EngineData;
 }
 
 export const createLayerProperties = (

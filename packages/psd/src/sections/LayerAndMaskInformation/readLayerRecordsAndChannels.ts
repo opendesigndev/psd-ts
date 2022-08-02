@@ -17,7 +17,7 @@ import {
   matchClipping,
   RawDataDescriptorValue,
 } from "../../interfaces";
-import { parseEngineData } from "../../methods";
+import {parseEngineData} from "../../methods";
 import {Cursor, InvalidBlendingModeSignature} from "../../utils";
 import {readAdditionalLayerInfo} from "./AdditionalLayerInfo";
 import {LayerChannels, LayerRecord} from "./interfaces";
@@ -153,9 +153,12 @@ function readLayerRecord(
         if (textValue && textValue.type === DescriptorValueType.String) {
           layerText = textValue.value;
         }
-        const rawEngineData = ali.textData.descriptor.items.get('EngineData');
-        if (rawEngineData && rawEngineData.type === DescriptorValueType.RawData) {
-          engineData = parseEngineData(rawEngineData.data)
+        const rawEngineData = ali.textData.descriptor.items.get("EngineData");
+        if (
+          rawEngineData &&
+          rawEngineData.type === DescriptorValueType.RawData
+        ) {
+          engineData = parseEngineData(rawEngineData.data);
         }
         break;
       }

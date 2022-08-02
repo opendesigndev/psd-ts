@@ -62,31 +62,19 @@
           "EndIndent": 0.0,
           "EveryLineComposer": false,
           "FirstLineIndent": 0.0,
-          "GlyphSpacing": [
-            1.0,
-            1.0,
-            1.0
-          ],
+          "GlyphSpacing": [1.0, 1.0, 1.0],
           "Hanging": false,
           "HyphenatedWordSize": 6,
           "Justification": 0,
           "KinsokuOrder": 0,
           "LeadingType": 0,
-          "LetterSpacing": [
-            0.0,
-            0.0,
-            0.0
-          ],
+          "LetterSpacing": [0.0, 0.0, 0.0],
           "PostHyphen": 2,
           "PreHyphen": 2,
           "SpaceAfter": 0.0,
           "SpaceBefore": 0.0,
           "StartIndent": 0.0,
-          "WordSpacing": [
-            0.8,
-            1.0,
-            1.33
-          ],
+          "WordSpacing": [0.8, 1.0, 1.33],
           "Zone": 36.0
         }
       }
@@ -107,12 +95,7 @@
           "FauxItalic": false,
           "FillColor": {
             "Type": 1,
-            "Values": [
-              1.0,
-              0.0,
-              0.0,
-              0.0
-            ]
+            "Values": [1.0, 0.0, 0.0, 0.0]
           },
           "FillFirst": true,
           "FillFlag": true,
@@ -132,12 +115,7 @@
           "Strikethrough": false,
           "StrokeColor": {
             "Type": 1,
-            "Values": [
-              1.0,
-              0.0,
-              0.0,
-              0.0
-            ]
+            "Values": [1.0, 0.0, 0.0, 0.0]
           },
           "StrokeFlag": false,
           "StyleRunAlignment": 2,
@@ -165,23 +143,13 @@
       "AlignLineHeightToGridFlags": false,
       "GridColor": {
         "Type": 1,
-        "Values": [
-          0.0,
-          0.0,
-          0.0,
-          1.0
-        ]
+        "Values": [0.0, 0.0, 0.0, 1.0]
       },
       "GridIsOn": false,
       "GridLeading": 22.0,
       "GridLeadingFillColor": {
         "Type": 1,
-        "Values": [
-          0.0,
-          0.0,
-          0.0,
-          1.0
-        ]
+        "Values": [0.0, 0.0, 0.0, 1.0]
       },
       "GridSize": 18.0,
       "ShowGrid": false
@@ -189,15 +157,8 @@
     "ParagraphRun": {
       "DefaultRunData": {
         "Adjustments": {
-          "Axis": [
-            1.0,
-            0.0,
-            1.0
-          ],
-          "XY": [
-            0.0,
-            0.0
-          ]
+          "Axis": [1.0, 0.0, 1.0],
+          "XY": [0.0, 0.0]
         },
         "ParagraphSheet": {
           "DefaultStyleSheet": 0,
@@ -208,15 +169,8 @@
       "RunArray": [
         {
           "Adjustments": {
-            "Axis": [
-              1.0,
-              0.0,
-              1.0
-            ],
-            "XY": [
-              0.0,
-              0.0
-            ]
+            "Axis": [1.0, 0.0, 1.0],
+            "XY": [0.0, 0.0]
           },
           "ParagraphSheet": {
             "DefaultStyleSheet": 0,
@@ -228,39 +182,25 @@
               "EndIndent": 0.0,
               "EveryLineComposer": false,
               "FirstLineIndent": 0.0,
-              "GlyphSpacing": [
-                1.0,
-                1.0,
-                1.0
-              ],
+              "GlyphSpacing": [1.0, 1.0, 1.0],
               "Hanging": false,
               "HyphenatedWordSize": 6,
               "Justification": 0,
               "KinsokuOrder": 0,
               "LeadingType": 0,
-              "LetterSpacing": [
-                0.0,
-                0.0,
-                0.0
-              ],
+              "LetterSpacing": [0.0, 0.0, 0.0],
               "PostHyphen": 2,
               "PreHyphen": 2,
               "SpaceAfter": 0.0,
               "SpaceBefore": 0.0,
               "StartIndent": 0.0,
-              "WordSpacing": [
-                0.8,
-                1.0,
-                1.33
-              ],
+              "WordSpacing": [0.8, 1.0, 1.33],
               "Zone": 36.0
             }
           }
         }
       ],
-      "RunLengthArray": [
-        634
-      ]
+      "RunLengthArray": [634]
     },
     "Rendered": {
       "Shapes": {
@@ -270,25 +210,11 @@
               "Photoshop": {
                 "Base": {
                   "ShapeType": 1,
-                  "TransformPoint0": [
-                    1.0,
-                    0.0
-                  ],
-                  "TransformPoint1": [
-                    0.0,
-                    1.0
-                  ],
-                  "TransformPoint2": [
-                    0.0,
-                    0.0
-                  ]
+                  "TransformPoint0": [1.0, 0.0],
+                  "TransformPoint1": [0.0, 1.0],
+                  "TransformPoint2": [0.0, 0.0]
                 },
-                "BoxBounds": [
-                  0.0,
-                  0.0,
-                  1512.0,
-                  2668.93262
-                ],
+                "BoxBounds": [0.0, 0.0, 1512.0, 2668.93262],
                 "ShapeType": 1
               }
             },
@@ -325,12 +251,7 @@
               "FauxItalic": false,
               "FillColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Font": 0,
               "FontBaseline": 0,
@@ -346,12 +267,7 @@
               "Strikethrough": false,
               "StrokeColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Tracking": 0,
               "Underline": false,
@@ -373,12 +289,7 @@
               "FauxItalic": false,
               "FillColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Font": 2,
               "FontBaseline": 0,
@@ -394,12 +305,7 @@
               "Strikethrough": false,
               "StrokeColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Tracking": 0,
               "Underline": false,
@@ -421,12 +327,7 @@
               "FauxItalic": false,
               "FillColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Font": 2,
               "FontBaseline": 0,
@@ -442,12 +343,7 @@
               "Strikethrough": false,
               "StrokeColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Tracking": 0,
               "Underline": false,
@@ -469,12 +365,7 @@
               "FauxItalic": false,
               "FillColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Font": 2,
               "FontBaseline": 0,
@@ -490,12 +381,7 @@
               "Strikethrough": false,
               "StrokeColor": {
                 "Type": 1,
-                "Values": [
-                  1.0,
-                  0.0,
-                  0.0,
-                  0.0
-                ]
+                "Values": [1.0, 0.0, 0.0, 0.0]
               },
               "Tracking": 0,
               "Underline": false,
@@ -505,12 +391,7 @@
           }
         }
       ],
-      "RunLengthArray": [
-        1,
-        450,
-        43,
-        140
-      ]
+      "RunLengthArray": [1, 450, 43, 140]
     },
     "UseFractionalGlyphWidths": true
   },
@@ -577,31 +458,19 @@
           "EndIndent": 0.0,
           "EveryLineComposer": false,
           "FirstLineIndent": 0.0,
-          "GlyphSpacing": [
-            1.0,
-            1.0,
-            1.0
-          ],
+          "GlyphSpacing": [1.0, 1.0, 1.0],
           "Hanging": false,
           "HyphenatedWordSize": 6,
           "Justification": 0,
           "KinsokuOrder": 0,
           "LeadingType": 0,
-          "LetterSpacing": [
-            0.0,
-            0.0,
-            0.0
-          ],
+          "LetterSpacing": [0.0, 0.0, 0.0],
           "PostHyphen": 2,
           "PreHyphen": 2,
           "SpaceAfter": 0.0,
           "SpaceBefore": 0.0,
           "StartIndent": 0.0,
-          "WordSpacing": [
-            0.8,
-            1.0,
-            1.33
-          ],
+          "WordSpacing": [0.8, 1.0, 1.33],
           "Zone": 36.0
         }
       }
@@ -622,12 +491,7 @@
           "FauxItalic": false,
           "FillColor": {
             "Type": 1,
-            "Values": [
-              1.0,
-              0.0,
-              0.0,
-              0.0
-            ]
+            "Values": [1.0, 0.0, 0.0, 0.0]
           },
           "FillFirst": true,
           "FillFlag": true,
@@ -647,12 +511,7 @@
           "Strikethrough": false,
           "StrokeColor": {
             "Type": 1,
-            "Values": [
-              1.0,
-              0.0,
-              0.0,
-              0.0
-            ]
+            "Values": [1.0, 0.0, 0.0, 0.0]
           },
           "StrokeFlag": false,
           "StyleRunAlignment": 2,
