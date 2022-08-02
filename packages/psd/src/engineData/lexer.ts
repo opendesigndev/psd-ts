@@ -1,3 +1,5 @@
+// Based on PDF grammar: https://web.archive.org/web/20220226063926/https://www.adobe.com/content/dam/acom/en/devnet/pdf/pdfs/PDF32000_2008.pdf
+// Section 7.2 - Lexical Conventions
 import { Cursor } from "../utils"
 
 export enum TokenType {
@@ -6,6 +8,9 @@ export enum TokenType {
     DictEnd,
     ArrBeg,
     ArrEnd,
+    Name,
+    Number,
+    Boolean,
 }
 
 export type Token =
@@ -14,6 +19,9 @@ export type Token =
     | { type: TokenType.DictEnd }
     | { type: TokenType.ArrBeg }
     | { type: TokenType.ArrEnd }
+    | { type: TokenType.Name, value: string }
+    | { type: TokenType.Number, value: number }
+    | { type: TokenType.Boolean, value: boolean }
 
 const WhitespaceCharacters = new Set(
     [0,
@@ -24,18 +32,24 @@ const WhitespaceCharacters = new Set(
      13, // \r
     ])
 
+const BooleanStartCharacters = new Set(
+    [0x66, // f
+     0x74, // t
+    ])
+
 const Delimiters = {
-    "(": 40,
-    ")": 41,
-    "<": 60,
-    ">": 62,
-    "[": 91,
-    "]": 93,
-    "{": 123,
-    "}": 125,
-    "/": 47,
-    "%": 37,
-    "\\": 92,
+    "(": 0x28,
+    ")": 0x29,
+    "<": 0x3c,
+    ">": 0x3e,
+    "[": 0x5b,
+    "]": 0x5d,
+    "/": 0x2f,
+    "\\": 0x5c,
+    // NOTE: These have meaning within PDF. Are they used here?
+    // "{": 123,
+    // "}": 125,
+    // "%": 37,
  }
 
 const DelimiterCharacters = new Set(Object.values(Delimiters))
@@ -76,7 +90,20 @@ export class Lexer {
                     yield { type: TokenType.DictEnd }
                     continue
                 }
+                if (val === Delimiters["/"]) {
+                    yield { type: TokenType.Name, value: this.string() }
+                    continue
+                }
+                console.assert(false, "Unhandled delimiter: '%s'", String.fromCharCode(val))
                 continue
+            }
+            // only two types left: number or boolean
+            // we need to return val first since it starts value
+            this.cursor.unpass(1)
+            if (BooleanStartCharacters.has(val)) {
+                yield { type: TokenType.Boolean, value: this.boolean() }
+            } else {
+                yield { type: TokenType.Number, value: this.number() }
             }
         }
     }
@@ -96,16 +123,28 @@ export class Lexer {
         if (hasBom) {
             decoder = this.textDecoderFromBOM()
         }
+        const textParts = [] as string[]
         const readAhead = this.cursor.clone()
         while (readAhead.peek() !== Delimiters[")"]) {
             readAhead.pass(1)
-            // NOTE: do we need to decode escape sequences?
-            if (readAhead.peek() === Delimiters["\\"])
-                readAhead.pass(1)
+            if (readAhead.peek() === Delimiters["\\"]) {
+                const length = readAhead.position - this.cursor.position
+                let raw = this.cursor.take(length)
+                if (raw.at(-1) === 0x00) {
+                    // Sometimes there's extra padding before - we need to remove it
+                    raw = raw.subarray(0, -1)
+                }
+                textParts.push(decoder.decode(raw))
+                readAhead.pass(1) // skip over \\
+                textParts.push(String.fromCharCode(readAhead.take(1)[0])) // un-escape character
+                this.cursor.pass(2) // skip over escaped character to avoid decoding it in subsequent part
+            }
          }
-        const text = decoder.decode(this.cursor.take(readAhead.position - this.cursor.position - 1))
+        const length = readAhead.position - this.cursor.position
+        const raw = this.cursor.take(length)
+        textParts.push(decoder.decode(raw))
         this.cursor.pass(1) // final )
-        return text
+        return textParts.join("")
     }
 
     private textDecoderFromBOM(): TextDecoder {
@@ -115,5 +154,33 @@ export class Lexer {
             return new TextDecoder("utf-16le")
         // NOTE: should we validate there's no garbage otherwise?
         return new TextDecoder("utf-16be")
+    }
+
+    private string(): string {
+        let decoder = new TextDecoder("ascii")
+        const readAhead = this.cursor.clone()
+        while (!this.done() && !WhitespaceCharacters.has(this.cursor.peek())) {
+            this.cursor.pass(1)
+         }
+        const text = decoder.decode(readAhead.take(this.cursor.position - readAhead.position))
+        return text
+    }
+
+    private number(): number {
+        const text = this.string()
+        const value = Number(text)
+        console.assert(!Number.isNaN(value), "parsing '%s' as Number failed", text)
+        return value
+    }
+
+    private boolean(): boolean {
+        const text = this.string()
+        if (text === "true") {
+            return true
+        }
+        if (text === "false") {
+            return false
+        }
+        throw new Error(`'${text}' is neither 'true' nor 'false'`)
     }
 }

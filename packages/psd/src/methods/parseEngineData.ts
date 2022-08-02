@@ -1,12 +1,9 @@
+import { Lexer, Parser } from "../engineData";
 import { EngineData } from "../interfaces";
+import { Cursor } from "../utils";
 
-export function parseEngineData(_raw: Uint8Array): EngineData {
-    // tokenize -> parse -> check required properties
-    // NOTE: use TextDecoder('utf-16be') and TextDecoder('utf-16le') w/ manual detection of BOM
-    // BOM is https://en.wikipedia.org/wiki/Byte_order_mark#UTF-16
-    return {
-        DocumentResources: {},
-        EngineDict: {},
-        ResourceDict:{},
-    }
+export function parseEngineData(raw: Uint8Array): EngineData {
+    const value = new Parser(new Lexer(new Cursor(new DataView(raw.buffer, raw.byteOffset))).tokens()).parse()
+    // TODO: validate props
+    return value as any as EngineData
 }

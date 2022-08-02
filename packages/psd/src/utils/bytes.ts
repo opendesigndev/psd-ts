@@ -118,6 +118,10 @@ export class Cursor {
     this.position += length;
   }
 
+  unpass(length: number): void {
+    this.position -= length;
+  }
+
   /**
    * Creates a `Uint8Array` that covers the underlying `ArrayBuffer` of this
    * cursor, starting at the current cursor position and spanning a
@@ -159,7 +163,7 @@ export class Cursor {
    */
   peek(): number {
     // dataView throws RangeError if position is outside bounds
-    return this.dataView.getInt8(this.position);
+    return this.dataView.getUint8(this.position);
   }
 
   /**
