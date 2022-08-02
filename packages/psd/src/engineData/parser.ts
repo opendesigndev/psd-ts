@@ -2,6 +2,12 @@
 // Copyright 2021-present NAVER WEBTOON
 // MIT License
 
+import {
+  InvalidEngineDataDictKey,
+  InvalidTopLevelEngineDataValue,
+  UnexpectedEndOfEngineData,
+  UnexpectedEngineDataToken,
+} from "../utils";
 import {Token, TokenType} from "./lexer";
 
 export type RawEngineData = {
@@ -25,8 +31,7 @@ export class Parser {
     if (typeof value === "object" && !Array.isArray(value)) {
       return value;
     }
-    // TODO: create new error type
-    throw new Error(
+    throw new InvalidTopLevelEngineDataValue(
       `EngineData top-level value is not a dict; is ${typeof value}`
     );
   }
@@ -45,8 +50,7 @@ export class Parser {
       it = this.advance();
     }
     if (!it) {
-      // TODO: create new error type
-      throw new Error("End of stream");
+      throw new UnexpectedEndOfEngineData("End of stream");
     }
     switch (it.type) {
       case TokenType.Name:
@@ -59,8 +63,9 @@ export class Parser {
       case TokenType.ArrBeg:
         return this.arr();
     }
-    // TODO: create new error type
-    throw new Error(`Unexpected token: ${TokenType[it.type]}`);
+    throw new UnexpectedEngineDataToken(
+      `Unexpected token: ${TokenType[it.type]}`
+    );
   }
 
   private advance(): Token {
@@ -77,8 +82,9 @@ export class Parser {
         return val;
       }
       if (it.type !== TokenType.Name) {
-        // TODO: create new error type
-        throw new Error(`Dict key is not Name; is ${TokenType[it.type]}`);
+        throw new InvalidEngineDataDictKey(
+          `Dict key is not Name; is ${TokenType[it.type]}`
+        );
       }
       const value = this.value();
       val[it.value] = value;

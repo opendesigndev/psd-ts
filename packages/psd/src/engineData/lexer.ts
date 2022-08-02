@@ -5,7 +5,12 @@
 // Based on PDF grammar: https://web.archive.org/web/20220226063926/https://www.adobe.com/content/dam/acom/en/devnet/pdf/pdfs/PDF32000_2008.pdf
 // Section 7.2 - Lexical Conventions
 
-import {Cursor} from "../utils";
+import {
+  Cursor,
+  InvalidEngineDataBoolean,
+  InvalidEngineDataNumber,
+  InvalidEngineDataTextBOM,
+} from "../utils";
 
 export enum TokenType {
   String,
@@ -160,10 +165,16 @@ export class Lexer {
   private textDecoderFromBOM(): TextDecoder {
     const firstBomPart = this.cursor.read("u8");
     const sndBomPart = this.cursor.read("u8");
+    // https://en.wikipedia.org/wiki/Byte_order_mark#UTF-16
+    // LE is FF FE
     if (firstBomPart === 0xff && sndBomPart === 0xfe)
       return new TextDecoder("utf-16le");
-    // NOTE: should we validate there's no garbage otherwise?
-    return new TextDecoder("utf-16be");
+    // BE is FE FF
+    if (firstBomPart === 0xfe && sndBomPart === 0xff)
+      return new TextDecoder("utf-16be");
+    throw new InvalidEngineDataTextBOM(
+      `Unknown BOM value: [${firstBomPart}, ${sndBomPart}]`
+    );
   }
 
   private string(): string {
@@ -181,7 +192,9 @@ export class Lexer {
   private number(): number {
     const text = this.string();
     const value = Number(text);
-    console.assert(!Number.isNaN(value), "parsing '%s' as Number failed", text);
+    if (Number.isNaN(value)) {
+      throw new InvalidEngineDataNumber(`parsing '${text}' as Number failed`);
+    }
     return value;
   }
 
@@ -193,6 +206,8 @@ export class Lexer {
     if (text === "false") {
       return false;
     }
-    throw new Error(`'${text}' is neither 'true' nor 'false'`);
+    throw new InvalidEngineDataBoolean(
+      `'${text}' is neither 'true' nor 'false'`
+    );
   }
 }
