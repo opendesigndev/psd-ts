@@ -1,0 +1,3 @@
+[submodule "packages/color_converter/Little-CMS"]
+	path = packages/color_converter/Little-CMS
+	url = https://github.com/mm2/Little-CMS
