@@ -60,6 +60,7 @@ export interface LayerProperties {
   text?: string;
   /** Text properties */
   textProperties?: EngineData;
+  additionalLayerInfos: AdditionalLayerInfo[];
 }
 
 export const createLayerProperties = (
@@ -79,6 +80,7 @@ export const createLayerProperties = (
     blendMode,
     layerText,
     engineData,
+    additionalLayerInfos,
   } = layerRecord;
 
   return {
@@ -95,5 +97,6 @@ export const createLayerProperties = (
     groupId,
     text: layerText,
     textProperties: engineData,
+    additionalLayerInfos,
   };
 };
