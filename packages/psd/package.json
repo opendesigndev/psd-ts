@@ -1,6 +1,6 @@
 {
-  "name": "@webtoon/psd",
-  "version": "0.3.0",
+  "name": "@opendesign/psd-ts",
+  "version": "0.0.0-experimental",
   "description": "lightweight psd file parser with no dependency written in typescript",
   "homepage": "https://webtoon.github.io/psd",
   "license": "MIT",
