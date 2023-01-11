@@ -182,6 +182,14 @@ layerPixelData = await layer.composite(true, false);
 layerPixelData = await layer.composite(false);
 ```
 
+## Release process
+
+1. download nix from https://nixos.org/download.html
+2. switch to branch experimental-release
+3. run nix-shell
+4. npm run build
+5. npm run release [version]
+
 ## License
 
 `@webtoon/psd` is released under the [MIT license](https://github.com/webtoon/psd/blob/main/LICENSE).
