@@ -20,6 +20,7 @@ import {
   InvalidSignature,
   InvalidVersion,
   UnknownBlendingMode,
+  UnsupportedCompression,
   UnsupportedDepth,
 } from "../../src/utils";
 
@@ -109,6 +110,12 @@ describe("Layer and Mask Information section", () => {
   it("should throw if the Channel Compression Mode is invalid", () => {
     expect(parsePsdFile("layer-channel-compression-invalid.psd")).toThrow(
       InvalidCompression
+    );
+  });
+
+  it("should throw if compression is unsupported", () => {
+    expect(parsePsdFile("layer-channel-compression-unsupported.psd")).toThrow(
+      UnsupportedCompression
     );
   });
 
