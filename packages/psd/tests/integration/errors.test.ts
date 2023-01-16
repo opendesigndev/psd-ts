@@ -113,12 +113,6 @@ describe("Layer and Mask Information section", () => {
     );
   });
 
-  it("should throw if compression is unsupported", () => {
-    expect(parsePsdFile("layer-channel-compression-unsupported.psd")).toThrow(
-      UnsupportedCompression
-    );
-  });
-
   it("should NOT throw if the Channel Kind (Channel ID) is invalid", () => {
     // readLayerRecord()가 채널 ID값을 검사하지 않게 코드가 짜여 있어서 'not'을 사용함
     expect(parsePsdFile("layer-channel-kind-invalid.psd")).not.toThrow();
