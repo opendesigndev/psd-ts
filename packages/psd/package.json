@@ -1,6 +1,6 @@
 {
   "name": "@opendesign/psd-ts",
-  "version": "0.0.0-experimental",
+  "version": "0.5.1-experimental-release-20230119",
   "description": "lightweight psd file parser with no dependency written in typescript",
   "homepage": "https://webtoon.github.io/psd",
   "license": "MIT",
