@@ -154,7 +154,15 @@ export function readPatternAliBlock(
   const data: Pattern[] = [];
 
   while (cursor.position + 4 < endAt && cursor.read("u32")) {
-    data.push(readPattern(cursor));
+    try {
+      const pattern = readPattern(cursor);
+      data.push(pattern);
+    } catch (e) {
+      console.info("Error reading pattern");
+      cursor.pass(endAt - cursor.position);
+
+      return {data};
+    }
   }
   cursor.pass(endAt - cursor.position);
 
