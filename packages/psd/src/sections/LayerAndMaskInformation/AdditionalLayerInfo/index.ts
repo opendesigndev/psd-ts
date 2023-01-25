@@ -38,13 +38,11 @@ export function readAdditionalLayerInfo(
   cursor: Cursor,
   fileVersionSpec: FileVersionSpec,
   padding = 0
-): AdditionalLayerInfo {
+): AdditionalLayerInfo | undefined {
   const signature = cursor.readString(4);
-
   if (signature !== "8BIM" && signature !== "8B64") {
-    throw new InvalidAdditionalLayerInfoSignature(
-      `Invalid signature: ${signature}`
-    );
+    cursor.unpass(4);
+    return;
   }
 
   const key = cursor.readString(4);

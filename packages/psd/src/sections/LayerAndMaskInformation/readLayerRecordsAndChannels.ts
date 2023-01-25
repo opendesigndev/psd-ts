@@ -142,7 +142,16 @@ function readLayerRecord(
 
   const additionalLayerInfos: AdditionalLayerInfo[] = [];
   while (cursor.position - layerExtraDataBegin < layerExtraDataSize) {
-    additionalLayerInfos.push(readAdditionalLayerInfo(cursor, fileVersionSpec));
+    const additionalLayerInfo = readAdditionalLayerInfo(
+      cursor,
+      fileVersionSpec
+    );
+
+    if (!additionalLayerInfo) {
+      break;
+    }
+
+    additionalLayerInfos.push(additionalLayerInfo);
   }
 
   // Extract useful information from additionalLayerInfos and expose them as
@@ -206,9 +215,17 @@ export function readGlobalAdditionalLayerInformation(
 ): AdditionalLayerProperties {
   const additionalLayerInfos = [];
   while (cursor.position < cursor.length) {
-    additionalLayerInfos.push(
-      readAdditionalLayerInfo(cursor, fileVersionSpec, /* padding */ 4)
+    const additionalLayerInfo = readAdditionalLayerInfo(
+      cursor,
+      fileVersionSpec,
+      /* padding */ 4
     );
+
+    if (!additionalLayerInfo) {
+      break;
+    }
+
+    additionalLayerInfos.push(additionalLayerInfo);
   }
 
   return fromEntries(
