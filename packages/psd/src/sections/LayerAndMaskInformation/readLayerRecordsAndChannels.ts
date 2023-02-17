@@ -238,15 +238,7 @@ export function readGlobalAdditionalLayerInformation(
 function readLayerRectangle(cursor: Cursor): [number, number, number, number] {
   const top = cursor.read("i32");
   const left = cursor.read("i32");
-
-  // Subtract 1 to make the offset start at 0.
-  // However, when the layer is completely transparent, the `bottom` value is
-  // already 0, so we don't need to subtract 1.
   const bottom = cursor.read("i32");
-
-  // Subtract 1 to make the offset start at 0.
-  // However, when the layer is completely transparent, the `right` value is
-  // already 0, so we don't need to subtract 1.
   const right = cursor.read("i32");
 
   return [top, left, bottom, right];
